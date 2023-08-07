@@ -1,10 +1,3 @@
-
-let computerChoice = getComputerChoice();
-let playerInput = prompt("Rock, paper, or Scissors?");
-let playerScore = 0;
-let computerScore = 0;
-let playerChoice = playerInput.toLowerCase();
-
 function getComputerChoice(){
     let randomNum = Math.floor(Math.random() * 3);
 
@@ -48,6 +41,42 @@ function playRound(computer, player){
 
     return winner;
 }
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;
+    let playerInput;
+    let playerChoice;
+
+    while((playerScore || computerScore) < 5) {
+        let computerChoice = getComputerChoice();
+        playerInput = prompt("rock, paper or scissors?");
+        playerChoice = playerInput.toLowerCase();
+
+        switch(playRound(computerChoice, playerChoice)){
+            case "computer":
+                console.log("computer wins");
+                computerScore++;
+                break;
+            
+            case "player":
+                console.log("you win");
+                playerScore++;
+                break;
+
+            case "tie":
+                console.log("tie");
+                break;
+        }
+    }
+
+    if (computerScore > playerScore){
+        console.log("computer won the game");
+    } else {
+        console.log("you won the game");
+    }
+}
+
+game();
 
 
 
