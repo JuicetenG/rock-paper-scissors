@@ -44,35 +44,37 @@ function playRound(computer, player){
 function game(){
     let playerScore = 0;
     let computerScore = 0;
+    let computerChoice;
     let playerInput;
     let playerChoice;
 
-    while((playerScore || computerScore) < 5) {
-        let computerChoice = getComputerChoice();
+
+    for(let i = 0; i < 5; i++) {
+        computerChoice = getComputerChoice();
         playerInput = prompt("rock, paper or scissors?");
         playerChoice = playerInput.toLowerCase();
 
         switch(playRound(computerChoice, playerChoice)){
             case "computer":
-                console.log("computer wins");
                 computerScore++;
+                console.log("computer wins this round )-:");
                 break;
             
             case "player":
-                console.log("you win");
                 playerScore++;
+                console.log("you win this one :-)");
                 break;
 
             case "tie":
-                console.log("tie");
+                console.log("tie round");
                 break;
         }
-    }
+    }   
 
     if (computerScore > playerScore){
-        console.log("computer won the game");
+        console.log("computer won the game!");
     } else {
-        console.log("you won the game");
+        console.log("you won the game!");
     }
 }
 
