@@ -10,6 +10,10 @@ function getComputerChoice(){
     }
 }
 
+function getPlayerChoice(){
+    return prompt("rock, paper or scissors?").toLowerCase();
+}
+
 function playRound(computer, player){
     let winner;
     
@@ -45,31 +49,27 @@ function game(){
     let playerScore = 0;
     let computerScore = 0;
     let computerChoice;
-    let playerInput;
     let playerChoice;
 
+    computerChoice = getComputerChoice();
+    playerChoice = getPlayerChoice();
 
-    for(let i = 0; i < 5; i++) {
-        computerChoice = getComputerChoice();
-        playerInput = prompt("rock, paper or scissors?");
-        playerChoice = playerInput.toLowerCase();
+    switch(playRound(computerChoice, playerChoice)){
+        case "computer":
+            computerScore++;
+            console.log("computer wins this round )-:");
+            break;
+        
+        case "player":
+            playerScore++;
+            console.log("you win this one :-)");
+            break;
 
-        switch(playRound(computerChoice, playerChoice)){
-            case "computer":
-                computerScore++;
-                console.log("computer wins this round )-:");
-                break;
-            
-            case "player":
-                playerScore++;
-                console.log("you win this one :-)");
-                break;
-
-            case "tie":
-                console.log("tie round");
-                break;
-        }
-    }   
+        case "tie":
+            console.log("tie round");
+            break;
+    }
+    console.log(playerChoice);
 
     if (computerScore > playerScore){
         console.log("computer won the game!");
