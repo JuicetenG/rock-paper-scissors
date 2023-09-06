@@ -1,3 +1,8 @@
+let playerScore = 0;
+let computerScore = 0;
+let computerChoice;
+let playerChoice;
+
 function getComputerChoice(){
     let randomNum = Math.floor(Math.random() * 3);
 
@@ -14,38 +19,42 @@ function getPlayerChoice(){
     return prompt("rock, paper or scissors?").toLowerCase();
 }
 
-function playRound(computer, player){
+function playRound(player){
     let winner;
+    computerChoice = getComputerChoice()
     
     if(player === "rock") {
-        if (computer === "rock"){
+        if (computerChoice === "rock"){
             winner = "tie";
-        } else if(computer === "paper"){
+        } else if(computerChoice === "paper"){
             winner = "computer";
         } else {
             winner = "player";
         }
     } else if(player === "paper"){
-        if(computer === "paper"){
+        if(computerChoice === "paper"){
             winner = "tie";
-        } else if(computer === "rock"){
+        } else if(computerChoice === "rock"){
             winner = "player";
         } else {
             winner = "computer";
         }
     } else {
-        if(computer === "scissors"){
+        if(computerChoice === "scissors"){
             winner = "tie";
-        } else if (computer === "rock"){
+        } else if (computerChoice === "rock"){
             winner = "computer";
         } else {
             winner = "player";
         }
     }
-
+    
+    console.log(player);
+    console.log(computerChoice);
+    console.log(winner);
     return winner;
 }
-function game(){
+/*function game(){
     let playerScore = 0;
     let computerScore = 0;
     let computerChoice;
@@ -69,7 +78,7 @@ function game(){
             console.log("tie round");
             break;
     }
-    console.log(playerChoice);
+
 
     if (computerScore > playerScore){
         console.log("computer won the game!");
@@ -84,8 +93,12 @@ function game(){
 }
 
 game();
+*/
 
-
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+button.addEventListener('click', () => playRound(button.id));
+});
 
 
 
