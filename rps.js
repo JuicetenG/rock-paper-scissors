@@ -21,7 +21,7 @@ function displayResults(roundWin){
 
     const roundWinner = document.querySelector('#winner');
     roundWinner.textContent = `You chose ${playerChoice} and computer chose
-                                ${computerChoice}. Round result is: ${roundWin}`;
+                                ${computerChoice}. ${roundWin}`;
 }
 
 function checkScore(){
@@ -42,6 +42,15 @@ function displayGameWinner(){
     } else announceWinner.textContent = "Computer Wins!";
 
     gameWinner.appendChild(announceWinner);
+
+    const playAgain = document.createElement('button');
+    playAgain.textContent = "Play Again?";
+    gameWinner.appendChild(playAgain);
+    playAgain.addEventListener('click', refreshPage);
+}
+
+function refreshPage(){
+    location.reload();
 }
 
 function playRound(player){
@@ -80,7 +89,10 @@ function playRound(player){
         }
     }
     
-    displayResults(winner);
+    if(winner === "player") displayResults("You Win the round!"); 
+    else if (winner === "computer") displayResults("Computer wins the round!");
+    else displayResults("Tie Round!");
+
 }
 
 const buttons = document.querySelectorAll('button');
