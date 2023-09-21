@@ -1,1 +1,2 @@
 # rock-paper-scissors
+This is a rock paper scissors game that uses a random computer choice and user input to play 5 rounds. I need to refactor the JS and may tweak the styling some but am happy with it for now. Definitely will return down the road to apply more advanced styling as I learn more. 
