@@ -1,7 +1,23 @@
+const pScore = document.querySelector('#playerScore');
+const cScore = document.querySelector('#computerScore');
+const roundWinner = document.querySelector('#winner');
+
 let playerScore = 0;
 let computerScore = 0;
 let computerChoice;
 let playerChoice;
+
+const buttons = document.querySelectorAll('div button');
+buttons.forEach((button) => {
+button.addEventListener('click', () => {
+    playerChoice = button.id; 
+    playRound(playerChoice);
+
+});
+});
+
+const restartGame = document.querySelector('#newGame');
+restartGame.addEventListener('click', refreshPage);
 
 function getComputerChoice(){
     let randomNum = Math.floor(Math.random() * 1000);
@@ -16,10 +32,8 @@ function getComputerChoice(){
 }
 
 function displayResults(roundWin){
-    const score = document.querySelector('#score');
-    score.textContent = `You: ${playerScore} | Computer: ${computerScore}`;
-
-    const roundWinner = document.querySelector('#winner');
+    pScore.textContent = playerScore;
+    cScore.textContent = computerScore;
     roundWinner.textContent = `You chose ${playerChoice} and computer chose
                                 ${computerChoice}. ${roundWin}`;
 }
@@ -34,19 +48,11 @@ function checkScore(){
 }
 
 function displayGameWinner(){
-    const gameWinner = document.querySelector("#results");
-    const announceWinner = document.createElement('p');
-
     if(playerScore > computerScore){
-        announceWinner.textContent = "You Win!";
-    } else announceWinner.textContent = "Computer Wins!";
-
-    gameWinner.appendChild(announceWinner);
-
-    const playAgain = document.createElement('button');
-    playAgain.textContent = "Play Again?";
-    gameWinner.appendChild(playAgain);
-    playAgain.addEventListener('click', refreshPage);
+        roundWinner.textContent = `You chose ${playerChoice} and computer chose
+        ${computerChoice}. You win the game!`;
+    } else roundWinner.textContent = `You chose ${playerChoice} and computer chose
+    ${computerChoice}. Computer wins the game!`;
 }
 
 function refreshPage(){
@@ -93,16 +99,10 @@ function playRound(player){
     else if (winner === "computer") displayResults("Computer wins the round!");
     else displayResults("Tie Round!");
 
+    checkScore();
 }
 
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
-button.addEventListener('click', () => {
-    playerChoice = button.id; 
-    playRound(playerChoice);
-    checkScore();
-});
-});
+
 
 
 
