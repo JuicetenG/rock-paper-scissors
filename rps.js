@@ -2,26 +2,22 @@ const pScore = document.querySelector('#playerScore');
 const cScore = document.querySelector('#computerScore');
 const roundWinner = document.querySelector('#winner');
 const buttons = document.querySelectorAll('div button');
-buttons.forEach(button => {button.addEventListener('click', getPlayerChoice)}); 
+const restartGame = document.querySelector('#newGame');
 
 let playerScore = 0;
 let computerScore = 0;
 let computerChoice;
 let playerChoice;
 
-const restartGame = document.querySelector('#newGame');
-restartGame.addEventListener('click', refreshPage);
+buttons.forEach(button => {button.addEventListener('click', getPlayerChoice)}); 
+restartGame.addEventListener('click', () => location.reload());
 
 function getComputerChoice(){
     let randomNum = Math.floor(Math.random() * 1000);
 
-    if(randomNum % 3 === 0){
-        return "rock";
-    } else if(randomNum % 3 === 1){
-        return "paper";
-    } else {
-        return "scissors";
-    }
+    if(randomNum % 3 === 0) return "rock"; 
+    else if(randomNum % 3 === 1) return "paper";
+    else return "scissors";
 }
 
 function getPlayerChoice(e){
@@ -51,10 +47,6 @@ function displayGameWinner(){
         ${computerChoice}. You win the game!`;
     } else roundWinner.textContent = `You chose ${playerChoice} and computer chose
     ${computerChoice}. Computer wins the game!`;
-}
-
-function refreshPage(){
-    location.reload();
 }
 
 function playRound(player){
