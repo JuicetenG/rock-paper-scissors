@@ -1,20 +1,13 @@
 const pScore = document.querySelector('#playerScore');
 const cScore = document.querySelector('#computerScore');
 const roundWinner = document.querySelector('#winner');
+const buttons = document.querySelectorAll('div button');
+buttons.forEach(button => {button.addEventListener('click', getPlayerChoice)}); 
 
 let playerScore = 0;
 let computerScore = 0;
 let computerChoice;
 let playerChoice;
-
-const buttons = document.querySelectorAll('div button');
-buttons.forEach((button) => {
-button.addEventListener('click', () => {
-    playerChoice = button.id; 
-    playRound(playerChoice);
-
-});
-});
 
 const restartGame = document.querySelector('#newGame');
 restartGame.addEventListener('click', refreshPage);
@@ -29,6 +22,11 @@ function getComputerChoice(){
     } else {
         return "scissors";
     }
+}
+
+function getPlayerChoice(e){
+    playerChoice = e.target.id; 
+    playRound(playerChoice);
 }
 
 function displayResults(roundWin){
